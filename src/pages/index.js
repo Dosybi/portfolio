@@ -175,7 +175,7 @@ export default function Home() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <div className="bg-[#f5f4f0] px-5 transition-colors duration-500 dark:bg-[#2C2C2C] dark:text-slate-50">
+    <div className="bg-[#f5f4f0] px-5 transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
       <HeadSection title={content.meta.title} />
       <div className="md:flex">
         <Header {...content.header} />
