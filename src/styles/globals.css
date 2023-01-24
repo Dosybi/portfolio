@@ -33,7 +33,7 @@ body {
   position: absolute;
   bottom: -0.125rem;
   right: 0;
-  background: #2a2a2a;
+  background: #dc2638;
   transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -41,10 +41,4 @@ body {
   width: 100%;
   right: unset;
   left: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .link-decorated::after {
-    background: white;
-  }
 }

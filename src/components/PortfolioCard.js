@@ -7,6 +7,7 @@ const PortfolioCard = ({
   title,
   year,
   subtitle,
+  text,
   button,
   isLast,
 }) => {
@@ -17,8 +18,8 @@ const PortfolioCard = ({
       } border-black`}
     >
       <div className="md:flex md:flex-row-reverse md:justify-between">
-        <Image className="mb-3 md:w-1/3" src={image} alt={title} />
-        <div>
+        {/* <Image className="mb-3 h-full w-1/3" src={image} alt={title} /> */}
+        <div className="md:mr-8">
           <div className="mb-2 text-xs uppercase tracking-widest text-red-600 dark:text-red-400">
             {category}
           </div>
@@ -26,9 +27,10 @@ const PortfolioCard = ({
             {title}
           </h2>
           <div className="mb-2 text-sm">{year}</div>
-          <h3 className="font-italic mb-8 text-lg text-gray-600 dark:text-slate-300 md:mr-8">
+          <h3 className="font-italic mb-4 text-lg text-gray-600 dark:text-slate-300">
             {subtitle}
           </h3>
+          <p className="mb-8">{text}</p>
           <div className="self-end">
             <Button {...button} />
           </div>

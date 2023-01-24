@@ -1,3 +1,5 @@
+import { useTheme } from 'next-themes'
+
 import Header from '@/components/Header'
 import HeadSection from '@/components/HeadSection'
 import PortfolioCard from '@/components/PortfolioCard'
@@ -9,11 +11,14 @@ import putty from '../../assets/photos/putty-title-md.png'
 import amlify from '../../assets/photos/amplify-title-md.png'
 import lula from '../../assets/photos/lula-title-md.jpg'
 import photoAndVideo from '../../assets/photos/photo-video-title-md.jpg'
+import avatar from '../../assets/photos/avatar.png'
+import avatarWhite from '../../assets/photos/avatar-white.png'
 
 import { FiMail } from 'react-icons/fi'
 import { AiOutlineGithub } from 'react-icons/ai'
 import { BsInstagram } from 'react-icons/bs'
 import { TbBrandTelegram } from 'react-icons/tb'
+import Image from 'next/image'
 
 const content = {
   meta: {
@@ -43,7 +48,7 @@ const content = {
       title: 'Ramotion Agency',
       year: '2022 — настоящее время',
       subtitle: 'фронтенд и информационная архитектура',
-      text: '',
+      text: 'В составе команды агентства разрабатываю сайты для компаний из США и Великобритании. Верстаем по макетам в Фигме, чаще всего используем Next, но бывает Gatsby или Astro. Настраиваем серверный рендеринг и обратную совместимость с ЦРМ-системами вроде DatoCMS или Contentful.',
       button: {
         label: 'Агентство',
         link: 'https://www.ramotion.com',
@@ -55,6 +60,7 @@ const content = {
       title: 'Groovy Calcs',
       year: '2022 — настоящее время',
       subtitle: 'идея, разработка, дизайн, копирайтинг и деплой',
+      text: 'Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
       button: {
         label: 'Калькуляторы',
         link: 'https://groovy-calcs.vercel.app',
@@ -66,22 +72,23 @@ const content = {
       title: 'Pure',
       year: '2019 — 2020',
       subtitle: 'CSS-стили для блога, плагины, доработка интерфейса',
+      text: 'Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков. Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
       button: {
         label: 'Приложение',
         link: 'https://pure.app/',
       },
     },
-    {
-      image: lula,
-      category: 'HTML, CSS',
-      title: 'Международная школа фриланса',
-      year: '2015 — 2018',
-      subtitle: 'вёрстка посадочных страниц, дизайн',
-      button: {
-        label: 'Школа',
-        link: 'https://helppy.pro/helppy',
-      },
-    },
+    // {
+    //   image: lula,
+    //   category: 'HTML, CSS',
+    //   title: 'Международная школа фриланса',
+    //   year: '2015 — 2018',
+    //   subtitle: 'вёрстка посадочных страниц, дизайн',
+    //   button: {
+    //     label: 'Школа',
+    //     link: 'https://helppy.pro/helppy',
+    //   },
+    // },
   ],
   education: {
     heading: 'Учёба',
@@ -117,6 +124,7 @@ const content = {
           label: 'Read Paper',
           link: '/',
         },
+        isCurrent: true,
       },
     ],
   },
@@ -164,12 +172,14 @@ const content = {
 }
 
 export default function Home() {
+  const { theme, setTheme } = useTheme()
+
   return (
-    <div className="px-5 transition-colors duration-500 dark:bg-gray-800 dark:text-slate-50">
+    <div className="bg-[#f5f4f0] px-5 transition-colors duration-500 dark:bg-gray-800 dark:text-slate-50">
       <HeadSection title={content.meta.title} />
-      <div className="md:flex md:justify-between">
+      <div className="md:flex">
         <Header {...content.header} />
-        <div className="md:w-3/4">
+        <div className="md:w-2/4">
           <div className="mb-14">
             {content.portfolio.map((item, index, arr) => {
               return (
@@ -185,7 +195,26 @@ export default function Home() {
             <About {...content.about} />
             <Education {...content.education} />
           </div>
-          <Contact {...content.contact} />
+          <div className="relative flex justify-between">
+            <Contact {...content.contact} />
+            {theme === 'light' ? (
+              <Image
+                className="absolute bottom-0 right-0"
+                src={avatar}
+                alt="Антон Досыбиев"
+                width={200}
+                height={'100%'}
+              />
+            ) : (
+              <Image
+                className="absolute bottom-0 right-0"
+                src={avatarWhite}
+                alt="Антон Досыбиев"
+                width={200}
+                height={'100%'}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
