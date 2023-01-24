@@ -16,8 +16,8 @@ body {
   scroll-behavior: smooth;
 }
 
-.font-italic {
-  font-family: 'Playfair Display', serif;
+.font-subheading {
+  font-family: 'Lora', serif;
   font-style: italic;
 }
 

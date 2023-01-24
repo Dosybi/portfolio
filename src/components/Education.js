@@ -7,7 +7,7 @@ const Education = ({ heading, content, isCurrent }) => {
       {content.map((item) => {
         return (
           <div className="mb-4" key={item.subheading}>
-            <h3 className="font-italic mb-1 text-gray-600 dark:text-slate-300 md:text-lg">
+            <h3 className="font-subheading mb-1 text-gray-600 dark:text-slate-300 md:text-lg">
               {item.subheading}{' '}
               {item.isCurrent && (
                 <span className="text-xs text-red-600">...изучаю сейчас</span>

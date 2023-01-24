@@ -179,8 +179,8 @@ export default function Home() {
       <HeadSection title={content.meta.title} />
       <div className="md:flex">
         <Header {...content.header} />
-        <div className="md:w-2/4">
-          <div className="mb-14">
+        <div className="">
+          <div className="mb-14 md:w-3/5">
             {content.portfolio.map((item, index, arr) => {
               return (
                 <PortfolioCard
@@ -195,7 +195,7 @@ export default function Home() {
             <About {...content.about} />
             <Education {...content.education} />
           </div>
-          <div className="relative flex justify-between">
+          <div className="relative flex justify-between md:w-4/5">
             <Contact {...content.contact} />
             {theme === 'light' ? (
               <Image
