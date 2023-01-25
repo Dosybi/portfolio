@@ -25,11 +25,11 @@ const Header = ({ title, navigation }) => {
   return (
     <header className="relative py-4 md:pt-9">
       <div className="flex items-center justify-between">
-        <div className="flex items-center md:mb-8">
+        <div className="flex w-full items-center justify-between md:mb-8 md:justify-start">
           <div className="mr-6 text-xs font-bold uppercase tracking-widest">
             {title}
           </div>
-          <div>
+          <div className="text-2xl md:text-lg">
             {theme === 'dark' ? (
               <BsSunFill
                 className="cursor-pointer"
