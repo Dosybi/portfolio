@@ -1,6 +1,9 @@
 import Head from 'next/head'
 
-const HeadSection = ({ title, description = '' }) => {
+const HeadSection = ({
+  title,
+  description = 'Фронтенд-разработчик с навыками в UI/UX',
+}) => {
   return (
     <Head>
       <title>{title}</title>

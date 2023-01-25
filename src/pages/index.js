@@ -1,3 +1,6 @@
+import { useTheme } from 'next-themes'
+import Image from 'next/image'
+
 import Header from '@/components/Header'
 import HeadSection from '@/components/HeadSection'
 import PortfolioCard from '@/components/PortfolioCard'
@@ -5,10 +8,8 @@ import Education from '@/components/Education'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 
-import putty from '../../assets/photos/putty-title-md.png'
-import amlify from '../../assets/photos/amplify-title-md.png'
-import lula from '../../assets/photos/lula-title-md.jpg'
-import photoAndVideo from '../../assets/photos/photo-video-title-md.jpg'
+import avatar from '../../assets/photos/avatar.png'
+import avatarWhite from '../../assets/photos/avatar-white.png'
 
 import { FiMail } from 'react-icons/fi'
 import { AiOutlineGithub } from 'react-icons/ai'
@@ -22,10 +23,6 @@ const content = {
   header: {
     title: 'Антон Досыбиев',
     navigation: [
-      // {
-      //   label: 'Проекты',
-      //   link: '#work',
-      // },
       {
         label: 'Обо мне',
         link: '#about',
@@ -38,48 +35,33 @@ const content = {
   },
   portfolio: [
     {
-      image: putty,
-      category: 'React, Next, Tailwind, SSR, Jamstack',
+      stack: 'React, Next, Tailwind, SSR, Jamstack',
       title: 'Ramotion Agency',
       year: '2022 — настоящее время',
-      subtitle: 'фронтенд и информационная архитектура',
-      text: '',
+      text: 'В составе команды агентства разрабатываю сайты для компаний из США и Великобритании. Верстаем по макетам в Фигме, чаще всего используем Next, но бывает Gatsby или Astro. Настраиваем серверный рендеринг и обратную совместимость с ЦРМ-системами вроде DatoCMS или Contentful.',
       button: {
         label: 'Агентство',
         link: 'https://www.ramotion.com',
       },
     },
     {
-      image: photoAndVideo,
-      category: 'Next, Tailwind',
+      stack: 'Next, Tailwind',
       title: 'Groovy Calcs',
       year: '2022 — настоящее время',
-      subtitle: 'идея, разработка, дизайн, копирайтинг и деплой',
+      text: 'Набор забавных и иногда пугающих калькуляторов — мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
       button: {
         label: 'Калькуляторы',
         link: 'https://groovy-calcs.vercel.app',
       },
     },
     {
-      image: amlify,
-      category: 'Wordpress',
+      stack: 'Wordpress',
       title: 'Pure',
       year: '2019 — 2020',
-      subtitle: 'CSS-стили для блога, плагины, доработка интерфейса',
+      text: 'Настраивал стили и плагигы для блога, верстал баннеры, оптимизировал контент в соответствие с требованиями СЕО, редактировал статьи и управлял командой авторов.',
       button: {
         label: 'Приложение',
         link: 'https://pure.app/',
-      },
-    },
-    {
-      image: lula,
-      category: 'HTML, CSS',
-      title: 'Международная школа фриланса',
-      year: '2015 — 2018',
-      subtitle: 'вёрстка посадочных страниц, дизайн',
-      button: {
-        label: 'Школа',
-        link: 'https://helppy.pro/helppy',
       },
     },
   ],
@@ -87,36 +69,24 @@ const content = {
     heading: 'Учёба',
     content: [
       {
+        subheading: 'Школа дизайнеров Бюро Горбунова',
+        text: 'Дизайн-бюро Артёма Горбунова',
+        progress: '100%',
+      },
+      {
         subheading: 'The Complete JavaScript Course: From Zero to Expert',
         text: 'Udemi',
-        button: {
-          label: 'Read Paper',
-          link: '/',
-        },
+        progress: '100%',
       },
       {
         subheading: 'Complete React Developer',
         text: 'Udemi',
-        button: {
-          label: 'Read Paper',
-          link: '/',
-        },
-      },
-      {
-        subheading: 'Школа дизайнеров Бюро Горбунова',
-        text: 'Дизайн-бюро Артёма Горбунова',
-        button: {
-          label: 'Read Paper',
-          link: '/',
-        },
+        progress: '100%',
       },
       {
         subheading: 'Creative Coding 2.0 in JS: Animation, Sound, & Color',
         text: 'Domestika',
-        button: {
-          label: 'Read Paper',
-          link: '/',
-        },
+        progress: '56%',
       },
     ],
   },
@@ -142,12 +112,12 @@ const content = {
       },
       {
         label: 'github.com/dosybi',
-        link: 'www.github.com/dosybi',
+        link: 'https://github.com/dosybi',
         icon: <AiOutlineGithub />,
       },
       {
         label: 'instagram.com/dosybi',
-        link: 'www.instagram.com/dosybi',
+        link: 'https://instagram.com/dosybi',
         icon: <BsInstagram />,
       },
       {
@@ -158,36 +128,66 @@ const content = {
     ],
     button: {
       label: 'Резюме',
-      link: '/',
+      link: 'https://hh.ru/resume/b127f5d0ff09d4f7050039ed1f645757594647',
     },
   },
 }
 
 export default function Home() {
+  const { theme, setTheme } = useTheme()
+
   return (
-    <div className="px-5 transition-colors duration-500 dark:bg-gray-800 dark:text-slate-50">
+    <>
       <HeadSection title={content.meta.title} />
-      <div className="md:flex md:justify-between">
-        <Header {...content.header} />
-        <div className="md:w-3/4">
-          <div className="mb-14">
-            {content.portfolio.map((item, index, arr) => {
-              return (
-                <PortfolioCard
-                  {...item}
-                  isLast={index + 1 !== arr.length ? false : true}
-                  key={item.title}
+      <div className="bg-[#f5f4f0] px-5 transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
+        <div className="md:flex">
+          <Header {...content.header} />
+          <div className="relative">
+            <div className="mb-14 md:w-3/5">
+              {content.portfolio.map((item, index, arr) => {
+                return (
+                  <PortfolioCard
+                    {...item}
+                    isLast={index + 1 !== arr.length ? false : true}
+                    key={item.title}
+                  />
+                )
+              })}
+            </div>
+            <div className="lg:flex">
+              <About {...content.about} />
+              <Education {...content.education} />
+            </div>
+            <div className="relative flex justify-between md:w-4/5">
+              <Contact {...content.contact} />
+
+              {theme === 'light' ? (
+                <Image
+                  className="absolute -bottom-4 right-0 hidden md:block"
+                  src={avatar}
+                  alt="Антон Досыбиев"
+                  width={150}
+                  height={'100%'}
                 />
-              )
-            })}
+              ) : (
+                <Image
+                  className="absolute -bottom-4 right-0 hidden md:block"
+                  src={avatarWhite}
+                  alt="Антон Досыбиев"
+                  width={150}
+                  height={'100%'}
+                />
+              )}
+            </div>
+            <div className="text-xs">
+              <div>
+                © Антон Досыбиев, {new Date().getFullYear()}{' '}
+                <span className="ml-4">Make love, not war ❤️</span>
+              </div>
+            </div>
           </div>
-          <div className="lg:flex">
-            <About {...content.about} />
-            <Education {...content.education} />
-          </div>
-          <Contact {...content.contact} />
         </div>
       </div>
-    </div>
+    </>
   )
 }

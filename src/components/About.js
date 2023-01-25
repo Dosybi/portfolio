@@ -11,7 +11,7 @@ const About = ({ heading, text, subheading, extra }) => {
           )
         })}
       </div>
-      <h3 className="font-italic mb-1 text-gray-600 dark:text-slate-300 md:text-lg">
+      <h3 className="font-subheading mb-1 text-gray-600 dark:text-slate-300 md:text-lg">
         {subheading}
       </h3>
       {extra.map((paragraph) => {
