@@ -195,7 +195,7 @@ export const dataEnglish = {
     ],
   },
   about: {
-    heading: 'Обо мне',
+    heading: 'About',
     text: [
       `I work as a frontend developer for a US-based digital agency with React, Next, Gatsby, Tailwind, SSR, GitLab. I have a good knowledge of Vue, Vuex, Nuxt, Webflow and Astro. I can understand others' code, like to learn and do it quickly.`,
       `Because of the NDA, I can't share details about the projects I work on at the agency, but I'd be happy to discuss the experience if you'd like to talk in person.`,
