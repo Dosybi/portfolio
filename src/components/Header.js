@@ -29,7 +29,7 @@ const Header = ({ title, navigation }) => {
           <div className="mr-6 text-xs font-bold uppercase tracking-widest">
             {title}
           </div>
-          <div className="text-2xl md:text-lg">
+          <div className="text-xl md:text-lg">
             {theme === 'dark' ? (
               <BsSunFill
                 className="cursor-pointer"
