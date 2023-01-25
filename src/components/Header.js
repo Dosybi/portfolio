@@ -3,34 +3,12 @@ import { useTheme } from 'next-themes'
 
 import Navigation from './Navigation'
 
-import { AiOutlineMenu } from 'react-icons/ai'
-import { MdClose } from 'react-icons/md'
 import { MdDarkMode } from 'react-icons/md'
 import { BsSunFill } from 'react-icons/bs'
 
 const Header = ({ title, navigation }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
-
-  const openMenu = () => {
-    setIsMenuOpen(true)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeMenu = () => {
-    setIsMenuOpen(false)
-    document.body.style.overflow = 'unset'
-  }
-
-  useEffect(() => {
-    document.body.style.overflow = 'unset'
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('resize', closeMenu)
-    return () => window.removeEventListener('resize', closeMenu)
-  })
 
   useEffect(() => {
     setMounted(true)
@@ -65,24 +43,9 @@ const Header = ({ title, navigation }) => {
             )}
           </div>
         </div>
-        <div onClick={() => (isMenuOpen ? closeMenu() : openMenu())}>
-          {isMenuOpen ? (
-            <MdClose className="text-2xl md:hidden" />
-          ) : (
-            <AiOutlineMenu className="text-2xl md:hidden" />
-          )}
-        </div>
       </div>
-      <div
-        className={`md:flex
-          ${
-            isMenuOpen
-              ? 'absolute left-0 right-0 top-full z-10 flex h-screen flex-col items-center justify-center gap-8 bg-white'
-              : 'hidden'
-          }`}
-      >
-        <Navigation navigation={navigation} />
-      </div>
+
+      <Navigation navigation={navigation} />
     </header>
   )
 }

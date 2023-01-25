@@ -42,3 +42,26 @@ body {
   right: unset;
   left: 0;
 }
+
+.text-move {
+  animation: move linear 60s infinite;
+  -webkit-animation: move linear 60s infinite;
+}
+
+@-webkit-keyframes move {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
