@@ -4,6 +4,30 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://portfolio-dosybi.vercel.app/"
+        />
+        <meta property="og:title" content="Антон Досыбиев" />
+        <meta
+          property="og:description"
+          content="Фронтенд-разработчик с навыками в UI/UX и редакторским бэкграундом"
+        />
+        <meta property="og:image" content="/meta-image.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://portfolio-dosybi.vercel.app/"
+        />
+        <meta property="twitter:title" content="Антон Досыбиев" />
+        <meta
+          property="twitter:description"
+          content="Фронтенд-разработчик с навыками в UI/UX и редакторским бэкграундом"
+        />
+        <meta property="twitter:image" content="/meta-image.png" />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
