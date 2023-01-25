@@ -1,3 +1,5 @@
+import classNames from 'classnames'
+
 import Button from './elements/Button'
 
 const Education = ({ heading, content }) => {
@@ -13,9 +15,10 @@ const Education = ({ heading, content }) => {
             <p className="mb-2">{item.text}</p>
             <div className="mb-4 h-0.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
               <div
-                className={`h-0.5 rounded-full text-end text-xs ${
+                className={classNames(
+                  'h-0.5 rounded-full text-end text-xs',
                   item.progress === '100%' ? 'bg-green-200' : 'bg-red-200'
-                }`}
+                )}
                 style={{ width: `${item.progress}` }}
               >
                 {item.progress}
