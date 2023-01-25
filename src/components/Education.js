@@ -7,7 +7,7 @@ const Education = ({ heading, content }) => {
       {content.map((item) => {
         return (
           <div className="mb-6" key={item.subheading}>
-            <h3 className="font-subheading mb-1 text-gray-600 dark:text-slate-300 md:text-lg">
+            <h3 className="font-subheading mb-1 text-lg text-gray-600 dark:text-slate-300">
               {item.subheading}
             </h3>
             <p className="mb-2">{item.text}</p>
