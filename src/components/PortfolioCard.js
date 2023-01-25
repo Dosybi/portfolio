@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Button from './elements/Button'
 
 const PortfolioCard = ({ stack, title, year, text, button }) => {
@@ -6,7 +5,7 @@ const PortfolioCard = ({ stack, title, year, text, button }) => {
     <div className="mb-8 box-border overflow-hidden pt-6">
       <div className="md:flex md:flex-row-reverse md:justify-between">
         <div className="md:mr-8">
-          <h2 className="text-3xl font-bold uppercase md:mr-8 md:text-4xl lg:text-6xl">
+          <h2 className="mb-2 text-3xl font-bold uppercase md:mr-8 md:text-4xl lg:text-6xl">
             {title}
           </h2>
           <div className="mb-2 text-sm">{year}</div>
@@ -14,9 +13,7 @@ const PortfolioCard = ({ stack, title, year, text, button }) => {
             {stack}
           </div>
           <p className="mb-4">{text}</p>
-          <div className="self-end">
-            <Button {...button} />
-          </div>
+          <Button {...button} />
         </div>
       </div>
     </div>

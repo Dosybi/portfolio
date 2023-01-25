@@ -1,4 +1,5 @@
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 
 import Header from '@/components/Header'
 import HeadSection from '@/components/HeadSection'
@@ -14,7 +15,6 @@ import { FiMail } from 'react-icons/fi'
 import { AiOutlineGithub } from 'react-icons/ai'
 import { BsInstagram } from 'react-icons/bs'
 import { TbBrandTelegram } from 'react-icons/tb'
-import Image from 'next/image'
 
 const content = {
   meta: {
@@ -48,7 +48,7 @@ const content = {
       stack: 'Next, Tailwind',
       title: 'Groovy Calcs',
       year: '2022 — настоящее время',
-      text: 'Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
+      text: 'Набор забавных и иногда пугающих калькуляторов — мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
       button: {
         label: 'Калькуляторы',
         link: 'https://groovy-calcs.vercel.app',
@@ -58,7 +58,7 @@ const content = {
       stack: 'Wordpress',
       title: 'Pure',
       year: '2019 — 2020',
-      text: 'Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков. Набор забавных и иногда пугающих калькуляторов — это мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
+      text: 'Настраивал стили и плагигы для блога, верстал баннеры, оптимизировал контент в соответствие с требованиями СЕО, редактировал статьи и управлял командой авторов.',
       button: {
         label: 'Приложение',
         link: 'https://pure.app/',
@@ -69,6 +69,11 @@ const content = {
     heading: 'Учёба',
     content: [
       {
+        subheading: 'Школа дизайнеров Бюро Горбунова',
+        text: 'Дизайн-бюро Артёма Горбунова',
+        progress: '100%',
+      },
+      {
         subheading: 'The Complete JavaScript Course: From Zero to Expert',
         text: 'Udemi',
         progress: '100%',
@@ -76,11 +81,6 @@ const content = {
       {
         subheading: 'Complete React Developer',
         text: 'Udemi',
-        progress: '100%',
-      },
-      {
-        subheading: 'Школа дизайнеров Бюро Горбунова',
-        text: 'Дизайн-бюро Артёма Горбунова',
         progress: '100%',
       },
       {
@@ -112,12 +112,12 @@ const content = {
       },
       {
         label: 'github.com/dosybi',
-        link: 'www.github.com/dosybi',
+        link: 'https://github.com/dosybi',
         icon: <AiOutlineGithub />,
       },
       {
         label: 'instagram.com/dosybi',
-        link: 'www.instagram.com/dosybi',
+        link: 'https://instagram.com/dosybi',
         icon: <BsInstagram />,
       },
       {
@@ -128,34 +128,9 @@ const content = {
     ],
     button: {
       label: 'Резюме',
-      link: '/',
+      link: 'https://hh.ru/resume/b127f5d0ff09d4f7050039ed1f645757594647',
     },
   },
-  tags: [
-    'react',
-    'nextjs',
-    'gatsby',
-    'ssr',
-    'jamstack',
-    'vue',
-    'nuxt',
-    'tailwind',
-    'postcss',
-    'pizza :P',
-    'html5',
-    'wordpress',
-    'astro',
-    'datocms',
-    'contentful',
-    'webflow',
-    'make love not war ❤️',
-    'vuex',
-    'javascript',
-    'vercel',
-    'ci/cd',
-    'netlify',
-    'coffee',
-  ],
 }
 
 export default function Home() {

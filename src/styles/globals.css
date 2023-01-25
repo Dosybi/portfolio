@@ -17,8 +17,8 @@ body {
 }
 
 .font-subheading {
-  font-family: 'Lora', serif;
-  font-style: italic;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
 }
 
 .link-decorated {
@@ -41,27 +41,4 @@ body {
   width: 100%;
   right: unset;
   left: 0;
-}
-
-.text-move {
-  animation: move linear 60s infinite;
-  -webkit-animation: move linear 60s infinite;
-}
-
-@-webkit-keyframes move {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
-}
-
-@keyframes move {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -100%;
-  }
 }
