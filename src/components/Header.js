@@ -6,7 +6,7 @@ import Navigation from './Navigation'
 import { MdDarkMode } from 'react-icons/md'
 import { BsSunFill } from 'react-icons/bs'
 
-const Header = ({ title, navigation }) => {
+const Header = ({ title, navigation, handleLanguageChange, language }) => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -29,6 +29,12 @@ const Header = ({ title, navigation }) => {
           <div className="mr-6 text-xs font-bold uppercase tracking-widest">
             {title}
           </div>
+          <div
+            className="cursor-pointer text-xs font-bold uppercase tracking-widest md:hidden"
+            onClick={handleLanguageChange}
+          >
+            {language === 'russian' ? 'En' : 'Ru'}
+          </div>
           <div className="text-xl md:text-lg">
             {theme === 'dark' ? (
               <BsSunFill
@@ -44,8 +50,13 @@ const Header = ({ title, navigation }) => {
           </div>
         </div>
       </div>
-
       <Navigation navigation={navigation} />
+      <div
+        className="mt-10 hidden cursor-pointer text-xs font-bold uppercase tracking-widest md:block"
+        onClick={handleLanguageChange}
+      >
+        {language === 'russian' ? 'En' : 'Ru'}
+      </div>
     </header>
   )
 }

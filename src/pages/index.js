@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 
@@ -11,137 +12,26 @@ import Contact from '@/components/Contact'
 import avatar from '../../assets/photos/avatar.png'
 import avatarWhite from '../../assets/photos/avatar-white.png'
 
-import { FiMail } from 'react-icons/fi'
-import { AiOutlineGithub } from 'react-icons/ai'
-import { BsInstagram } from 'react-icons/bs'
-import { TbBrandTelegram } from 'react-icons/tb'
-
-const content = {
-  meta: {
-    title: 'Антон Досыбиев',
-  },
-  header: {
-    title: 'Антон Досыбиев',
-    navigation: [
-      {
-        label: 'Обо мне',
-        link: '#about',
-      },
-      {
-        label: 'Контакты',
-        link: '#contact',
-      },
-    ],
-  },
-  portfolio: [
-    {
-      stack: 'React, Next, Tailwind, SSR, Jamstack',
-      title: 'Ramotion Agency',
-      year: '2022 — настоящее время',
-      text: 'В составе команды агентства разрабатываю сайты для компаний из США и Великобритании. Верстаем по макетам в Фигме, чаще всего используем Next, но бывает Gatsby или Astro. Настраиваем серверный рендеринг и обратную совместимость с ЦРМ-системами вроде DatoCMS или Contentful.',
-      button: {
-        label: 'Агентство',
-        link: 'https://www.ramotion.com',
-      },
-    },
-    {
-      stack: 'Next, Tailwind',
-      title: 'Groovy Calcs',
-      year: '2022 — настоящее время',
-      text: 'Набор забавных и иногда пугающих калькуляторов — мой пет-проект, который я делаю в свободное время ради развлечения. Стек минималистичный: Next и Tailwind. Приложения несложные, поэтому стейт-менеджерами не пользуюсь и управляю состоянием с помощью хуков.',
-      button: {
-        label: 'Калькуляторы',
-        link: 'https://groovy-calcs.vercel.app',
-      },
-    },
-    {
-      stack: 'Wordpress',
-      title: 'Pure',
-      year: '2019 — 2020',
-      text: 'Настраивал стили и плагины для блога, верстал баннеры, оптимизировал контент в соответствии с требованиями СЕО, редактировал статьи и управлял командой авторов.',
-      button: {
-        label: 'Приложение',
-        link: 'https://pure.app/',
-      },
-    },
-  ],
-  education: {
-    heading: 'Учёба',
-    content: [
-      {
-        subheading: 'Школа дизайнеров Бюро Горбунова',
-        text: 'Дизайн-бюро Артёма Горбунова',
-        progress: '100%',
-      },
-      {
-        subheading: 'The Complete JavaScript Course: From Zero to Expert',
-        text: 'Udemi',
-        progress: '100%',
-      },
-      {
-        subheading: 'Complete React Developer',
-        text: 'Udemi',
-        progress: '100%',
-      },
-      {
-        subheading: 'Creative Coding 2.0 in JS: Animation, Sound, & Color',
-        text: 'Domestika',
-        progress: '56%',
-      },
-    ],
-  },
-  about: {
-    heading: 'Обо мне',
-    text: [
-      'Работаю фронтенд-разработчиком в американском диджитал-агентстве на стеке: React, Next, Gatsby, Tailwind, SSR, GitLab. Знаю Vue, Vuex, Nuxt, Webflow и Astro. Умею разбираться в чужом коде. Люблю учиться и делаю это быстро.',
-      'Из-за NDA не могу рассказать подробнее о проектах, на которых работаю в агентстве, но буду рад обсудить этот опыт, если захотите поговорить лично.',
-      'Этот сайт сделал на Next, стилизовал с помощью Tailwind, задеплоил в Vercel.',
-    ],
-    subheading: 'До фронтенда',
-    extra: [
-      'Работал копирайтером и редактором, возглавлял команды авторов в бренд-медиа, запускал свои коммерческие проекты, поэтому умею смотреть на любую задачу не только как технарь, но и с точки зрения пользы для клиента и продукта.',
-    ],
-  },
-  contact: {
-    heading: 'Контакты',
-    contacts: [
-      {
-        label: 'dosybi@gmail.com',
-        link: 'mailto:dosybi@gmail.com',
-        icon: <FiMail />,
-      },
-      {
-        label: 'github.com/dosybi',
-        link: 'https://github.com/dosybi',
-        icon: <AiOutlineGithub />,
-      },
-      {
-        label: 'instagram.com/dosybi',
-        link: 'https://instagram.com/dosybi',
-        icon: <BsInstagram />,
-      },
-      {
-        label: 'telegram.me/dosybi',
-        link: 'https://telegram.me/dosybi',
-        icon: <TbBrandTelegram />,
-      },
-    ],
-    button: {
-      label: 'Резюме',
-      link: 'https://hh.ru/resume/b127f5d0ff09d4f7050039ed1f645757594647',
-    },
-  },
-}
+import { dataRussian, dataEnglish } from '../../data'
 
 export default function Home() {
+  const [content, setContent] = useState(dataRussian)
   const { theme, setTheme } = useTheme()
+
+  const changeLanguage = () => {
+    setContent(content === dataEnglish ? dataRussian : dataEnglish)
+  }
 
   return (
     <>
       <HeadSection title={content.meta.title} />
       <div className="bg-[#f5f4f0] px-5 transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
         <div className="md:flex">
-          <Header {...content.header} />
+          <Header
+            {...content.header}
+            handleLanguageChange={changeLanguage}
+            language={content === dataRussian ? 'russian' : 'english'}
+          />
           <div className="relative">
             <div className="mb-14 lg:w-3/5">
               {content.portfolio.map((item, index, arr) => {
@@ -181,7 +71,7 @@ export default function Home() {
             </div>
             <div className="text-xs">
               <div>
-                © Антон Досыбиев, {new Date().getFullYear()}{' '}
+                © {content.meta.title}, {new Date().getFullYear()}{' '}
                 <span className="ml-4">Make love, not war ❤️</span>
               </div>
             </div>
