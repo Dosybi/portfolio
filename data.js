@@ -25,7 +25,7 @@ export const dataRussian = {
       stack: 'React, Next, Tailwind, SSR, Jamstack',
       title: 'Ramotion Agency',
       year: '2022 — настоящее время',
-      text: 'В составе команды агентства разрабатываю сайты для компаний из США и Великобритании. Верстаем по макетам в Фигме, чаще всего используем Next, но бывает Gatsby или Astro. Настраиваем серверный рендеринг и обратную совместимость с ЦРМ-системами вроде DatoCMS или Contentful.',
+      text: 'В составе команды агентства разрабатываю сайты для компаний из США и Великобритании. Чаще всего используем Next, но бывает Gatsby или Astro. Настраиваем серверный рендеринг и обратную совместимость с ЦРМ-системами вроде DatoCMS или Contentful.',
       button: {
         label: 'Агентство',
         link: 'https://www.ramotion.com',
@@ -142,7 +142,7 @@ export const dataEnglish = {
       stack: 'React, Next, Tailwind, SSR, Jamstack',
       title: 'Ramotion Agency',
       year: '2022 — now',
-      text: 'As part of the agency team I develop websites for US and UK companies. We work with designs in Figma, mostly using Next, but sometimes Gatsby or Astro, configure server-side rendering and backward compatibility with CRM-systems like DatoCMS or Contentful.',
+      text: 'As part of the agency team I develop websites for US and UK companies. We use mostly Next, but sometimes Gatsby or Astro, configure server-side rendering and backward compatibility with CRM-systems like DatoCMS or Contentful.',
       button: {
         label: 'Agency',
         link: 'https://www.ramotion.com',
