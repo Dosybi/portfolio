@@ -2,7 +2,7 @@ import Button from './elements/Button'
 
 const Education = ({ heading, content }) => {
   return (
-    <div className="mb-14 md:w-1/3">
+    <div className="mb-14 lg:w-1/3">
       <h2 className="mb-4 text-2xl font-bold uppercase">{heading}</h2>
       {content.map((item) => {
         return (

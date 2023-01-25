@@ -143,7 +143,7 @@ export default function Home() {
         <div className="md:flex">
           <Header {...content.header} />
           <div className="relative">
-            <div className="mb-14 md:w-3/5">
+            <div className="mb-14 lg:w-3/5">
               {content.portfolio.map((item, index, arr) => {
                 return (
                   <PortfolioCard

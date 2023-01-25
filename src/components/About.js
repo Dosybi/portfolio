@@ -1,6 +1,6 @@
 const About = ({ heading, text, subheading, extra }) => {
   return (
-    <div className="mb-14 md:w-1/2 lg:mr-24" id="about">
+    <div className="mb-14 lg:mr-24 lg:w-1/2" id="about">
       <h2 className="mb-4 text-2xl font-bold uppercase">{heading}</h2>
       <div className="mb-4">
         {text.map((paragraph) => {
