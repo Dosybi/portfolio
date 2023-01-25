@@ -152,7 +152,8 @@ export const dataEnglish = {
       stack: 'Next, Tailwind',
       title: 'Groovy Calcs',
       year: '2022 — now',
-      text: `A set of funny and sometimes frightening calculators is my pet project that I keep developing in my spare time for fun. The stack is minimalistic: Next and Tailwind. The applications aren't complex, so I don't use state managers and handle state with hooks.`,
+      text: `Set of funny and disturbing calculators that I'm developing in my spare time. The stack is pretty simple: Next and Tailwind. 
+      Apps aren't complicated, so I use only hooks for state management.`,
       button: {
         label: 'Calcs',
         link: 'https://groovy-calcs.vercel.app',
@@ -197,13 +198,13 @@ export const dataEnglish = {
   about: {
     heading: 'About',
     text: [
-      `I work as a frontend developer for a US-based digital agency with React, Next, Gatsby, Tailwind, SSR, GitLab. I have a good knowledge of Vue, Vuex, Nuxt, Webflow and Astro. I can understand others' code, like to learn and do it quickly.`,
-      `Because of the NDA, I can't share details about the projects I work on at the agency, but I'd be happy to discuss the experience if you'd like to talk in person.`,
-      'This site was made using Next, styled with Tailwind, and deployed with Vercel.',
+      `I am a frontend developer for a US-based digital agency. We use React, Next, Gatsby, Tailwind, SSR, and GitLab. I'm good at Vue, Vuex, Nuxt, Webflow and Astro. Enjoy digging into others' code. Also, love to study new things, and I'm a fast learner.`,
+      `Due to NDA, I can't share details about the projects I'm working on right now, but can talk about the experience I get working on them if you'd like to talk in person.`,
+      'This website is created with Next, styled with Tailwind, and deployed with Vercel.',
     ],
     subheading: 'Before frontend',
     extra: [
-      'I worked as a copywriter and editor, headed teams of authors in brand media, and launched my commercial projects, so I can approach any task not only as a technician but also from the perspective of benefits for the client and the product.',
+      'I was a copywriter and editor leading teams of authors in brand media, and even more — successfully launched my own commercial projects. So now I approach my work from the business side as well.',
     ],
   },
   contact: {
