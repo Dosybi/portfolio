@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 
@@ -17,6 +17,12 @@ import { dataRussian, dataEnglish } from '../../data'
 export default function Home() {
   const [content, setContent] = useState(dataRussian)
   const { theme, setTheme } = useTheme()
+  const [currentTheme, setCurrentTheme] = useState('light')
+
+  useEffect(() => {
+    setCurrentTheme(theme)
+    console.log(theme)
+  }, [theme])
 
   const changeLanguage = () => {
     setContent(content === dataEnglish ? dataRussian : dataEnglish)
@@ -50,24 +56,13 @@ export default function Home() {
             </div>
             <div className="relative flex justify-between md:w-4/5">
               <Contact {...content.contact} />
-
-              {theme === 'light' ? (
-                <Image
-                  className="absolute -bottom-4 right-0 hidden md:block"
-                  src={avatar}
-                  alt="Антон Досыбиев"
-                  width={150}
-                  height={'100%'}
-                />
-              ) : (
-                <Image
-                  className="absolute -bottom-4 right-0 hidden md:block"
-                  src={avatarWhite}
-                  alt="Антон Досыбиев"
-                  width={150}
-                  height={'100%'}
-                />
-              )}
+              <Image
+                className="absolute -bottom-4 right-0 hidden md:block"
+                src={currentTheme === 'light' ? avatar : avatarWhite}
+                alt="Антон Досыбиев"
+                width={150}
+                height={'100%'}
+              />
             </div>
             <div className="text-xs">
               <div>
