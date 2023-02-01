@@ -13,7 +13,7 @@ const Navigation = ({ navigation }) => {
         <ul>
           {navigation.map((navItem) => {
             return (
-              <Link href={navItem.link} key={navItem.label}>
+              <Link href={navItem.link || navItem.slug} key={navItem.label}>
                 <li>
                   <div className="link-decorated mb-4 w-fit text-xs font-bold uppercase">
                     {navItem.label}
@@ -33,7 +33,7 @@ const Navigation = ({ navigation }) => {
             <ul className="bottom-8 mb-10 rounded-xl bg-white p-3">
               {navigation.map((navItem) => {
                 return (
-                  <Link href={navItem.link} key={navItem.label}>
+                  <Link href={navItem.link || navItem.slug} key={navItem.label}>
                     <li>
                       <div className="link-decorated mb-6 w-fit text-xs font-bold uppercase">
                         {navItem.label}
