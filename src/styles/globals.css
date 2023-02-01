@@ -21,6 +21,10 @@ body {
   font-weight: 600;
 }
 
+.font-mono {
+  font-family: 'Roboto Mono', monospace;
+}
+
 .link-decorated {
   position: relative;
   white-space: nowrap;

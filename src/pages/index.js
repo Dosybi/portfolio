@@ -162,12 +162,12 @@ export default function Home({ data }) {
                 height={'100%'}
               />
             </div>
-            <div className="text-xs">
+            <footer className="text-xs">
               <div>
                 © {content.metaTags.title}, {new Date().getFullYear()}{' '}
                 <span className="ml-4">Make love, not war ❤️</span>
               </div>
-            </div>
+            </footer>
           </div>
         </div>
       </div>

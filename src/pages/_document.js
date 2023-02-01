@@ -53,7 +53,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.ico" />
