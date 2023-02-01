@@ -2,25 +2,10 @@ const About = ({ heading, text, subheading, extra }) => {
   return (
     <div className="mb-14 lg:mr-24 lg:w-1/2" id="about">
       <h2 className="mb-4 text-2xl font-bold uppercase">{heading}</h2>
-      <div className="mb-4">
-        {text.map((paragraph) => {
-          return (
-            <p className="mb-2" key={paragraph}>
-              {paragraph}
-            </p>
-          )
-        })}
-      </div>
-      <h3 className="font-subheading mb-1 text-lg text-gray-600 dark:text-slate-300">
-        {subheading}
-      </h3>
-      {extra.map((paragraph) => {
-        return (
-          <p className="mb-2" key={paragraph}>
-            {paragraph}
-          </p>
-        )
-      })}
+      <div
+        dangerouslySetInnerHTML={{ __html: text }}
+        className="about mb-4 dark:text-slate-50"
+      ></div>
     </div>
   )
 }

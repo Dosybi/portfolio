@@ -42,3 +42,15 @@ body {
   right: unset;
   left: 0;
 }
+
+.about p {
+  margin-bottom: 0.5rem;
+}
+
+.about h2 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}

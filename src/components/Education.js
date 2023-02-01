@@ -8,11 +8,11 @@ const Education = ({ heading, content }) => {
       <h2 className="mb-4 text-2xl font-bold uppercase">{heading}</h2>
       {content.map((item) => {
         return (
-          <div className="mb-6" key={item.subheading}>
+          <div className="mb-6" key={item.course}>
             <h3 className="font-subheading mb-1 text-lg text-gray-600 dark:text-slate-300">
-              {item.subheading}
+              {item.course}
             </h3>
-            <p className="mb-2">{item.text}</p>
+            <p className="mb-2">{item.school}</p>
             <div className="mb-4 h-0.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
               <div
                 className={classNames(

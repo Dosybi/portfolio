@@ -1,3 +1,8 @@
+import { FiMail } from 'react-icons/fi'
+import { AiOutlineGithub } from 'react-icons/ai'
+import { BsInstagram } from 'react-icons/bs'
+import { TbBrandTelegram } from 'react-icons/tb'
+
 import Button from './elements/Button'
 
 const Contact = ({ heading, contacts, button }) => {
@@ -8,7 +13,10 @@ const Contact = ({ heading, contacts, button }) => {
         {contacts.map((contact) => {
           return (
             <li className="flex items-center gap-3" key={contact.label}>
-              <div>{contact.icon}</div>
+              {contact.platform === 'Mail' && <FiMail />}
+              {contact.platform === 'Github' && <AiOutlineGithub />}
+              {contact.platform === 'Instagram' && <BsInstagram />}
+              {contact.platform === 'Telegram' && <TbBrandTelegram />}
               <a href={contact.link} target="_blank" rel="noreferrer">
                 <p className="link-decorated mb-1 w-fit">{contact.label}</p>
               </a>

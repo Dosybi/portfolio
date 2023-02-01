@@ -33,7 +33,7 @@ const Header = ({ title, navigation, handleLanguageChange, language }) => {
             className="cursor-pointer text-xs font-bold uppercase tracking-widest md:hidden"
             onClick={handleLanguageChange}
           >
-            {language === 'russian' ? 'En' : 'Ru'}
+            {language === 'russian' ? 'En' : 'Ру'}
           </div>
           <div className="text-xl md:text-lg">
             {theme === 'dark' ? (
@@ -55,7 +55,7 @@ const Header = ({ title, navigation, handleLanguageChange, language }) => {
         className="mt-10 hidden cursor-pointer text-xs font-bold uppercase tracking-widest md:block"
         onClick={handleLanguageChange}
       >
-        {language === 'russian' ? 'En' : 'Ru'}
+        {language === 'russian' ? 'En' : 'Ру'}
       </div>
     </header>
   )

@@ -1,27 +1,18 @@
 import Link from 'next/link'
-import { useState } from 'react'
 import classNames from 'classnames'
+import useHover from '../hooks/useHover'
 
 import { HiOutlineArrowLongRight } from 'react-icons/hi2'
 
 const Button = ({ label, link }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [hoverRef, isHovered] = useHover()
   const isExternal = [...link][0] === '/' ? false : true
-
-  const onMouseEnter = () => {
-    setIsHovered(true)
-  }
-
-  const onMouseLeave = () => {
-    setIsHovered(false)
-  }
 
   return (
     <Link
       className="flex w-fit items-center font-bold"
       href={link}
-      onMouseEnter={() => onMouseEnter()}
-      onMouseLeave={() => onMouseLeave()}
+      ref={hoverRef}
       target={isExternal ? '_blank' : '_self'}
     >
       <div

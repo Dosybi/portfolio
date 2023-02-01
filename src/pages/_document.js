@@ -51,7 +51,7 @@ export default function Document() {
         <meta name="theme-color" content="#ffffff" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
           rel="stylesheet"
