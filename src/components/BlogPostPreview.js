@@ -7,9 +7,9 @@ const BlogPostPreview = ({ post }) => {
 
   return (
     <>
-      <Link href={'blog/' + post.slug} ref={hoverRef}>
+      <Link href={`/blog/${post.slug}`} ref={hoverRef}>
         <div className="mb-2 flex flex-wrap items-center">
-          <div className="mr-2 mb-2 text-sm font-light text-[#6b7280]">
+          <div className="mr-2 mb-2 text-sm font-light text-[#6b7280] dark:text-[#b4b8c0]">
             {new Intl.DateTimeFormat('ru', {
               month: 'long',
               day: 'numeric',
@@ -18,7 +18,7 @@ const BlogPostPreview = ({ post }) => {
           </div>
           <div
             className={classNames(
-              'mb-2 cursor-pointer text-sm text-[#22272A] underline underline-offset-4 transition-colors duration-200',
+              'mb-2 cursor-pointer text-sm text-[#22272A] underline underline-offset-4 transition-colors duration-200 dark:text-slate-50',
               isHovered && 'text-[#dc2638]'
             )}
           >

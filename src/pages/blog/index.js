@@ -30,7 +30,7 @@ const Blog = ({ data, tags }) => {
   return (
     <>
       <HeadSection title="Блог" />
-      <BlogLayout theme={currentTheme} name="Антон Досыбиев">
+      <BlogLayout name="Антон Досыбиев">
         <div className="mb-8 text-xl font-bold">Посты</div>
         <div className="mb-16">
           {posts?.map((post) => {
@@ -43,7 +43,9 @@ const Blog = ({ data, tags }) => {
         </div>
         <div className="mb-2 flex items-center">
           <BsTags className="mr-1.5" />
-          <div className="text-xl font-bold">Теги</div>
+          <Link href={'blog/tags'}>
+            <div className="text-xl font-bold">Теги</div>
+          </Link>
         </div>
         <div className="flex">
           {allTags?.map((tag) => {

@@ -30,7 +30,7 @@ const BlogPostPage = ({ data }) => {
   return (
     <>
       <HeadSection title={post?.heading} />
-      <BlogLayout theme={currentTheme} name="Антон Досыбиев">
+      <BlogLayout name="Антон Досыбиев">
         <BlogPost
           heading={post?.heading}
           text={post?.text}

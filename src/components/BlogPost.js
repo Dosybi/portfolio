@@ -20,10 +20,10 @@ const BlogPost = ({ heading, text, tags, date }) => {
     }).format(new Date(date))
 
   return (
-    <div className="text-[#22272A]">
+    <div className="text-[#22272A] dark:text-slate-50">
       <div className="mb-2 text-2xl font-bold">{heading}</div>
       <div className="mb-4 flex items-center ">
-        <div className="mr-3 text-sm">{readableDate}</div>
+        <div className="mr-3 text-sm dark:text-[#b4b8c0]">{readableDate}</div>
         <div className="mr-3">|</div>
         <BsTags className="mr-1.5" />
         {tags?.map((tag) => {
