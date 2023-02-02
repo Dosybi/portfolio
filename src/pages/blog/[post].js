@@ -7,6 +7,7 @@ import HeadSection from '@/components/HeadSection'
 import BlogHeader from '@/components/BlogHeader'
 import BlogPost from '@/components/BlogPost'
 import Footer from '@/components/Footer'
+import BlogLayout from '@/components/BlogLayout'
 
 const BlogPostPage = ({ data }) => {
   const { theme, setTheme } = useTheme()
@@ -22,23 +23,21 @@ const BlogPostPage = ({ data }) => {
     )
   }, [])
 
+  useEffect(() => {
+    setCurrentTheme(theme)
+  }, [theme])
+
   return (
     <>
       <HeadSection title={post?.heading} />
-      <div className="bg-[#f5f4f0] px-6 font-mono transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
-        <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-between">
-          <div>
-            <BlogHeader theme={currentTheme} />
-            <BlogPost
-              heading={post?.heading}
-              text={post?.text}
-              tags={post?.tags}
-              date={post?._publishedAt}
-            />
-          </div>
-          <Footer name="Антон Досыбиев" />
-        </div>
-      </div>
+      <BlogLayout theme={currentTheme} name="Антон Досыбиев">
+        <BlogPost
+          heading={post?.heading}
+          text={post?.text}
+          tags={post?.tags}
+          date={post?._publishedAt}
+        />
+      </BlogLayout>
     </>
   )
 }
