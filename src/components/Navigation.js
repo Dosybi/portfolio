@@ -1,11 +1,15 @@
 import Link from 'next/link'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import useOnClickOutside from './hooks/useOnClickOutside'
 
 import { AiOutlineMenu } from 'react-icons/ai'
+import { GrClose } from 'react-icons/gr'
 
 const Navigation = ({ navigation }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const ref = useRef()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  useOnClickOutside(ref, () => setIsMenuOpen(false))
 
   return (
     <>
@@ -25,17 +29,18 @@ const Navigation = ({ navigation }) => {
         </ul>
       </nav>
       <nav
-        className="fixed bottom-2 right-2 z-10 cursor-pointer md:hidden"
-        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-2 right-4 z-10 cursor-pointer dark:text-black md:hidden"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        ref={ref}
       >
-        {isOpen && (
+        {isMenuOpen && (
           <div>
-            <ul className="bottom-8 mb-10 rounded-xl bg-white p-3">
+            <ul className="bottom-8 mb-10 rounded-xl bg-white px-3 py-6">
               {navigation.map((navItem) => {
                 return (
                   <Link href={navItem.link || navItem.slug} key={navItem.label}>
                     <li>
-                      <div className="link-decorated mb-6 w-fit text-xs font-bold uppercase">
+                      <div className="link-decorated mb-6 w-fit font-bold uppercase">
                         {navItem.label}
                       </div>
                     </li>
@@ -47,11 +52,11 @@ const Navigation = ({ navigation }) => {
         )}
         <div
           className={classNames(
-            'fixed bottom-2 right-2 h-12 w-12 rounded-full bg-white p-3 text-2xl',
-            isOpen && 'rounded-t-none'
+            'fixed bottom-4 right-4 h-12 w-12 rounded-full bg-white p-3 text-2xl',
+            isMenuOpen && 'rounded-t-none'
           )}
         >
-          <AiOutlineMenu />
+          {isMenuOpen ? <GrClose /> : <AiOutlineMenu />}
         </div>
       </nav>
     </>
