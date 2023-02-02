@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'SFMono';
+  src: url('../../assets/fonts/SFMonoRegular.woff');
+  font-weight: normal;
+  font-style: monospace;
+}
+
+@font-face {
+  font-family: 'SFMono';
+  src: url('../../assets/fonts/SFMonoBold.woff');
+  font-weight: bold;
+  font-style: monospace;
+}
+
+@font-face {
+  font-family: 'SFMono';
+  src: url('../../assets/fonts/SFMonoLight.woff');
+  font-weight: light;
+  font-style: monospace;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -22,7 +43,7 @@ body {
 }
 
 .font-mono {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'SFMono', monospace;
 }
 
 .link-decorated {

@@ -12,6 +12,7 @@ import Contact from '@/components/Contact'
 
 import avatar from '../../assets/photos/avatar.png'
 import avatarWhite from '../../assets/photos/avatar-white.png'
+import Footer from '@/components/Footer'
 
 export default function Home({ data }) {
   const localeRu = useMemo(
@@ -162,12 +163,7 @@ export default function Home({ data }) {
                 height={'100%'}
               />
             </div>
-            <footer className="text-xs">
-              <div>
-                © {content.metaTags.title}, {new Date().getFullYear()}{' '}
-                <span className="ml-4">Make love, not war ❤️</span>
-              </div>
-            </footer>
+            <Footer name={content.metaTags.title} />
           </div>
         </div>
       </div>
