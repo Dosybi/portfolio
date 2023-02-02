@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
 import { request, blogPageQuery, tagsQuery } from '../../../lib/datocms'
@@ -7,15 +8,14 @@ import { BsTags } from 'react-icons/bs'
 import HeadSection from '@/components/HeadSection'
 import BlogHeader from '@/components/BlogHeader'
 import BlogPostPreview from '@/components/BlogPostPreview'
-import Link from 'next/link'
 import Footer from '@/components/Footer'
+import Tag from '@/components/elements/Tag'
 
 const Blog = ({ data, tags }) => {
   const { theme, setTheme } = useTheme()
   const [currentTheme, setCurrentTheme] = useState('light')
   const [posts, setPosts] = useState()
   const [allTags, setAllTags] = useState()
-  console.log(allTags)
 
   useEffect(() => {
     setPosts(data.allPosts)
@@ -51,9 +51,7 @@ const Blog = ({ data, tags }) => {
               {allTags?.map((tag) => {
                 return (
                   <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
-                    <div className="mr-2 cursor-pointer rounded-md bg-[#dc2638] px-2 py-1 text-xs text-white transition-colors duration-500 hover:bg-white hover:text-black">
-                      <div>{tag.tag}</div>
-                    </div>
+                    <Tag tag={tag.tag} />
                   </Link>
                 )
               })}
