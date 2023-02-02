@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { StructuredText, renderNodeRule } from 'react-datocms/structured-text'
 
 import {
@@ -27,9 +28,11 @@ const BlogPost = ({ heading, text, tags, date }) => {
         <BsTags className="mr-1.5" />
         {tags?.map((tag) => {
           return (
-            <div className="text-sm" key={tag.tag}>
-              #{tag.tag}
-            </div>
+            <Link href={`tags/${tag.slug}`} key={tag.tag}>
+              <div className="text-sm transition-colors duration-300 hover:text-[#dc2638]">
+                #{tag.tag}
+              </div>
+            </Link>
           )
         })}
       </div>
