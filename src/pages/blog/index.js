@@ -1,24 +1,25 @@
-import Image from 'next/image'
 import { useTheme } from 'next-themes'
-import { useState, useEffect, useMemo } from 'react'
-import { request, blogPageQuery } from '../../../lib/datocms'
+import { useState, useEffect } from 'react'
+import { request, blogPageQuery, tagsQuery } from '../../../lib/datocms'
+
+import { BsTags } from 'react-icons/bs'
 
 import HeadSection from '@/components/HeadSection'
-
-import avatar from '../../../assets/photos/avatar.png'
-import avatarWhite from '../../../assets/photos/avatar-white.png'
-import BlogPost from '@/components/BlogPost'
+import BlogHeader from '@/components/BlogHeader'
+import BlogPostPreview from '@/components/BlogPostPreview'
 import Link from 'next/link'
+import Footer from '@/components/Footer'
 
-const Blog = ({ data }) => {
+const Blog = ({ data, tags }) => {
   const { theme, setTheme } = useTheme()
   const [currentTheme, setCurrentTheme] = useState('light')
   const [posts, setPosts] = useState()
-
-  console.log(posts)
+  const [allTags, setAllTags] = useState()
+  console.log(allTags)
 
   useEffect(() => {
     setPosts(data.allPosts)
+    setAllTags(tags.allTags)
   }, [])
 
   useEffect(() => {
@@ -28,48 +29,37 @@ const Blog = ({ data }) => {
   return (
     <>
       <HeadSection title="Блог" />
-      <div className="min-h-screen bg-[#f5f4f0] px-6 font-mono transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
-        <div className="mx-auto max-w-2xl">
-          <div className="mb-16 flex items-center pt-10">
-            <Image
-              className="mr-6 border-b-2 border-black"
-              src={currentTheme === 'light' ? avatar : avatarWhite}
-              alt="Антон Досыбиев"
-              width={30}
-              height={'100%'}
-              priority
-            />
-            <div className="text-2xl font-bold">Блог</div>
-          </div>
-          <div className="mb-8 text-xl font-bold">Посты</div>
-          {posts.map((post) => {
-            return (
-              <div className="mb-10" key={post.heading}>
-                <div className="mb-2 flex flex-wrap items-center">
-                  <div className="mr-2 mb-2 text-sm font-light text-[#6b7280]">
-                    {new Intl.DateTimeFormat('ru', {
-                      month: 'long',
-                      day: 'numeric',
-                      year: 'numeric',
-                    }).format(new Date(post._publishedAt))}
+      <div className="bg-[#f5f4f0] px-6 font-mono transition-colors duration-500 dark:bg-zinc-900 dark:text-slate-50">
+        <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-between">
+          <div>
+            <BlogHeader theme={currentTheme} />
+            <div className="mb-8 text-xl font-bold">Посты</div>
+            <div className="mb-16">
+              {posts?.map((post) => {
+                return (
+                  <div className="mb-10" key={post.heading}>
+                    <BlogPostPreview post={post} />
                   </div>
-                  <Link href={'blog/' + post.slug}>
-                    <div className="mb-2 cursor-pointer text-sm text-[#22272A] underline underline-offset-4 transition-colors duration-200 hover:text-[#dc2638]">
-                      {post.heading}
+                )
+              })}
+            </div>
+            <div className="mb-2 flex items-center">
+              <BsTags className="mr-1.5" />
+              <div className="text-xl font-bold">Теги</div>
+            </div>
+            <div className="flex">
+              {allTags?.map((tag) => {
+                return (
+                  <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
+                    <div className="mr-2 cursor-pointer rounded-md bg-[#dc2638] px-2 py-1 text-xs text-white transition-colors duration-500 hover:bg-white hover:text-black">
+                      <div>{tag.tag}</div>
                     </div>
                   </Link>
-                </div>
-                <div className="mb-2 text-sm font-light">«{post.lead}»</div>
-              </div>
-            )
-          })}
-          {/* {posts.map((post) => {
-            return (
-              <div key={post.heading}>
-                <BlogPost {...post} date={post._publishedAt} />
-              </div>
-            )
-          })} */}
+                )
+              })}
+            </div>
+          </div>
+          <Footer name="Антон Досыбиев" />
         </div>
       </div>
     </>
@@ -83,7 +73,11 @@ export async function getStaticProps() {
     query: blogPageQuery,
   })
 
+  const tags = await request({
+    query: tagsQuery,
+  })
+
   return {
-    props: { data },
+    props: { data, tags },
   }
 }

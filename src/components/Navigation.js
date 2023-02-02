@@ -16,7 +16,7 @@ const Navigation = ({ navigation }) => {
               <Link href={navItem.link || navItem.slug} key={navItem.label}>
                 <li>
                   <div className="link-decorated mb-4 w-fit text-xs font-bold uppercase">
-                    {navItem.label}
+                    {navItem.label !== 'Blog' && navItem.label}
                   </div>
                 </li>
               </Link>

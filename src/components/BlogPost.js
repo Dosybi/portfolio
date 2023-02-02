@@ -1,5 +1,4 @@
 import { StructuredText, renderNodeRule } from 'react-datocms/structured-text'
-import { useEffect, useState } from 'react'
 
 import {
   isHeading,
@@ -11,25 +10,22 @@ import {
 import { BsTags } from 'react-icons/bs'
 
 const BlogPost = ({ heading, text, tags, date }) => {
-  const [readableDate, setReadableDate] = useState()
-  useEffect(() => {
-    setReadableDate(
-      new Intl.DateTimeFormat('ru', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      }).format(new Date(date))
-    )
-  }, [])
+  const readableDate =
+    date &&
+    new Intl.DateTimeFormat('ru', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(new Date(date))
 
   return (
-    <div className="mb-10 text-[#22272A]">
+    <div className="text-[#22272A]">
       <div className="mb-2 text-2xl font-bold">{heading}</div>
       <div className="mb-4 flex items-center ">
         <div className="mr-3 text-sm">{readableDate}</div>
         <div className="mr-3">|</div>
         <BsTags className="mr-1.5" />
-        {tags.map((tag) => {
+        {tags?.map((tag) => {
           return (
             <div className="text-sm" key={tag.tag}>
               #{tag.tag}
