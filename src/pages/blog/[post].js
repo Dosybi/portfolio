@@ -2,6 +2,7 @@ import { request, blogPageQuery } from '../../../lib/datocms'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useHover from '@/components/hooks/useHover'
+import useWindowSize from '@/components/hooks/useWindowSize'
 
 import HeadSection from '@/components/HeadSection'
 import BlogPost from '@/components/BlogPost'
@@ -15,6 +16,7 @@ const BlogPostPage = ({ data }) => {
   const [nextPost, setNextPost] = useState()
   const [prevPost, setPrevPost] = useState()
   const { asPath } = useRouter()
+  const size = useWindowSize()
 
   useEffect(() => {
     setPost(
@@ -44,7 +46,11 @@ const BlogPostPage = ({ data }) => {
           {prevPost ? (
             <div ref={hoverRefPrev}>
               <Button
-                label={isHoveredPrev ? prevPost.heading : 'Предыдущий пост'}
+                label={
+                  isHoveredPrev && size.width >= 640
+                    ? prevPost.heading
+                    : 'Предыдущий пост'
+                }
                 link={prevPost.slug}
                 isArrowLeft
               />
@@ -55,7 +61,11 @@ const BlogPostPage = ({ data }) => {
           {nextPost && (
             <div ref={hoverRefNext}>
               <Button
-                label={isHoveredNext ? nextPost.heading : 'Следующий пост'}
+                label={
+                  isHoveredNext && size.width >= 640
+                    ? nextPost.heading
+                    : 'Следующий пост'
+                }
                 link={nextPost.slug}
               />
             </div>
