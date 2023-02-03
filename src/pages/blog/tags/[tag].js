@@ -27,11 +27,11 @@ const TagPage = ({ data }) => {
     <>
       <HeadSection title="Блог" />
       <BlogLayout name="Антон Досыбиев">
-        <div className="mb-8 flex text-xl font-bold hover:text-[#dc2638]">
-          <Link href="/blog/tags">
-            <div>Теги →{` `}</div>
+        <div className="mb-8 flex text-xl font-bold">
+          <Link href="/blog/tags" className="hover:text-[#dc2638]">
+            <div>Теги{` `}</div>
           </Link>
-          <div>#{tag}</div>
+          <div>→ #{tag}</div>
         </div>
         <div className="mb-16">
           {posts?.map((post) => {

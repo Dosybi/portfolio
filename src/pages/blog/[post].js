@@ -4,14 +4,16 @@ import { useRouter } from 'next/router'
 import useHover from '@/components/hooks/useHover'
 import useWindowSize from '@/components/hooks/useWindowSize'
 
+import { ThreeDots } from 'react-loader-spinner'
+
 import HeadSection from '@/components/HeadSection'
 import BlogPost from '@/components/BlogPost'
 import BlogLayout from '@/components/BlogLayout'
 import Button from '@/components/elements/Button'
 
 const BlogPostPage = ({ data }) => {
-  const [hoverRefPrev, isHoveredPrev] = useHover()
-  const [hoverRefNext, isHoveredNext] = useHover()
+  const [isHoveredPrev, setIsHoveredPrev] = useState(false)
+  const [isHoveredNext, setIsHoveredNext] = useState(false)
   const [post, setPost] = useState()
   const [nextPost, setNextPost] = useState()
   const [prevPost, setPrevPost] = useState()
@@ -32,45 +34,84 @@ const BlogPostPage = ({ data }) => {
     setPrevPost(data.allPosts[postIndex + 1])
   }, [post])
 
+  const showPrevArticleHeading = () => {
+    setIsHoveredPrev(true)
+  }
+
+  const hidePrevArticleHeading = () => {
+    setIsHoveredPrev(false)
+  }
+
+  const showNextArticleHeading = () => {
+    setIsHoveredNext(true)
+  }
+
+  const hideNextArticleHeading = () => {
+    setIsHoveredNext(false)
+  }
+
   return (
     <>
       <HeadSection title={post?.heading} description={post?.lead} />
       <BlogLayout name="Антон Досыбиев">
-        <BlogPost
-          heading={post?.heading}
-          text={post?.text}
-          tags={post?.tags}
-          date={post?._publishedAt}
-        />
-        <div className="my-10 flex justify-between">
-          {prevPost ? (
-            <div ref={hoverRefPrev}>
-              <Button
-                label={
-                  isHoveredPrev && size.width >= 640
-                    ? prevPost.heading
-                    : 'Предыдущий'
-                }
-                link={prevPost.slug}
-                isArrowLeft
-              />
+        {post ? (
+          <>
+            <BlogPost
+              heading={post?.heading}
+              text={post?.text}
+              tags={post?.tags}
+              date={post?._publishedAt}
+            />
+            <div className="my-10 flex justify-between">
+              {prevPost ? (
+                <div
+                  onMouseEnter={() => showPrevArticleHeading()}
+                  onMouseLeave={() => hidePrevArticleHeading()}
+                >
+                  <Button
+                    label={
+                      isHoveredPrev && size.width >= 640
+                        ? prevPost.heading
+                        : 'Предыдущий'
+                    }
+                    link={prevPost.slug}
+                    isArrowLeft
+                  />
+                </div>
+              ) : (
+                <div></div>
+              )}
+              {nextPost && (
+                <div
+                  onMouseEnter={() => showNextArticleHeading()}
+                  onMouseLeave={() => hideNextArticleHeading()}
+                >
+                  <Button
+                    label={
+                      isHoveredNext && size.width >= 640
+                        ? nextPost.heading
+                        : 'Следующий'
+                    }
+                    link={nextPost.slug}
+                  />
+                </div>
+              )}
             </div>
-          ) : (
-            <div></div>
-          )}
-          {nextPost && (
-            <div ref={hoverRefNext}>
-              <Button
-                label={
-                  isHoveredNext && size.width >= 640
-                    ? nextPost.heading
-                    : 'Следующий'
-                }
-                link={nextPost.slug}
-              />
-            </div>
-          )}
-        </div>
+          </>
+        ) : (
+          <div className="flex justify-center">
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="black"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          </div>
+        )}
       </BlogLayout>
     </>
   )

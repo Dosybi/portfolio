@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { request, blogPageQuery, tagsQuery } from '../../../lib/datocms'
 
 import { BsTags } from 'react-icons/bs'
+import { ThreeDots } from 'react-loader-spinner'
 
 import HeadSection from '@/components/HeadSection'
 import BlogHeader from '@/components/BlogHeader'
@@ -32,34 +33,49 @@ const Blog = ({ data, tags }) => {
     <>
       <HeadSection title="Блог" />
       <BlogLayout name="Антон Досыбиев">
-        <div className="mb-8 text-xl font-bold">Посты</div>
-        <div className="mb-16">
-          {posts?.map((post) => {
-            return (
-              <div className="mb-10" key={post.heading}>
-                <BlogPostPreview post={post} />
+        {posts ? (
+          <>
+            <div className="mb-8 text-xl font-bold">Посты</div>
+            <div className="mb-16">
+              {posts?.map((post) => {
+                return (
+                  <div className="mb-10" key={post.heading}>
+                    <BlogPostPreview post={post} />
+                  </div>
+                )
+              })}
+            </div>
+            <div className="mb-2 flex items-center">
+              <BsTags className="mr-1.5" />
+              <Link href={'blog/tags'}>
+                <div className="text-xl font-bold">Теги</div>
+              </Link>
+            </div>
+            <div className="mb-16">
+              <div className="mb-4 flex flex-wrap">
+                {allTags?.map((tag) => {
+                  return (
+                    <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
+                      <Tag tag={tag.tag} />
+                    </Link>
+                  )
+                })}
               </div>
-            )
-          })}
-        </div>
-        <div className="mb-2 flex items-center">
-          <BsTags className="mr-1.5" />
-          <Link href={'blog/tags'}>
-            <div className="text-xl font-bold">Теги</div>
-          </Link>
-        </div>
-        <div className="mb-16">
-          <div className="mb-4 flex flex-wrap">
-            {allTags?.map((tag) => {
-              return (
-                <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
-                  <Tag tag={tag.tag} />
-                </Link>
-              )
-            })}
-          </div>
-          <Button label="Все теги" link="/blog/tags" />
-        </div>
+              <Button label="Все теги" link="/blog/tags" />
+            </div>
+          </>
+        ) : (
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="black"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        )}
       </BlogLayout>
     </>
   )
