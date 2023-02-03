@@ -49,7 +49,7 @@ const BlogPostPage = ({ data }) => {
                 label={
                   isHoveredPrev && size.width >= 640
                     ? prevPost.heading
-                    : 'Предыдущий пост'
+                    : 'Предыдущий'
                 }
                 link={prevPost.slug}
                 isArrowLeft
@@ -64,7 +64,7 @@ const BlogPostPage = ({ data }) => {
                 label={
                   isHoveredNext && size.width >= 640
                     ? nextPost.heading
-                    : 'Следующий пост'
+                    : 'Следующий'
                 }
                 link={nextPost.slug}
               />
