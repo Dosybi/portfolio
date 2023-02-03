@@ -1,18 +1,19 @@
-import { useTheme } from 'next-themes'
 import { request, blogPageQuery } from '../../../lib/datocms'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import useHover from '@/components/hooks/useHover'
 
 import HeadSection from '@/components/HeadSection'
-import BlogHeader from '@/components/BlogHeader'
 import BlogPost from '@/components/BlogPost'
-import Footer from '@/components/Footer'
 import BlogLayout from '@/components/BlogLayout'
+import Button from '@/components/elements/Button'
 
 const BlogPostPage = ({ data }) => {
-  const { theme, setTheme } = useTheme()
-  const [currentTheme, setCurrentTheme] = useState('light')
+  const [hoverRefPrev, isHoveredPrev] = useHover()
+  const [hoverRefNext, isHoveredNext] = useHover()
   const [post, setPost] = useState()
+  const [nextPost, setNextPost] = useState()
+  const [prevPost, setPrevPost] = useState()
   const { asPath } = useRouter()
 
   useEffect(() => {
@@ -21,15 +22,17 @@ const BlogPostPage = ({ data }) => {
         post.slug.includes(asPath.split('/')[asPath.split('/').length - 1])
       )[0]
     )
-  }, [])
+  }, [asPath])
 
   useEffect(() => {
-    setCurrentTheme(theme)
-  }, [theme])
+    const postIndex = data.allPosts.indexOf(post)
+    setNextPost(data.allPosts[postIndex - 1])
+    setPrevPost(data.allPosts[postIndex + 1])
+  }, [post])
 
   return (
     <>
-      <HeadSection title={post?.heading} />
+      <HeadSection title={post?.heading} description={post?.lead} />
       <BlogLayout name="Антон Досыбиев">
         <BlogPost
           heading={post?.heading}
@@ -37,6 +40,27 @@ const BlogPostPage = ({ data }) => {
           tags={post?.tags}
           date={post?._publishedAt}
         />
+        <div className="my-10 flex justify-between">
+          {prevPost ? (
+            <div ref={hoverRefPrev}>
+              <Button
+                label={isHoveredPrev ? prevPost.heading : 'Предыдущий пост'}
+                link={prevPost.slug}
+                isArrowLeft
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
+          {nextPost && (
+            <div ref={hoverRefNext}>
+              <Button
+                label={isHoveredNext ? nextPost.heading : 'Следующий пост'}
+                link={nextPost.slug}
+              />
+            </div>
+          )}
+        </div>
       </BlogLayout>
     </>
   )

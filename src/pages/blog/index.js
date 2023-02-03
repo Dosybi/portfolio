@@ -11,6 +11,7 @@ import BlogPostPreview from '@/components/BlogPostPreview'
 import Footer from '@/components/Footer'
 import Tag from '@/components/elements/Tag'
 import BlogLayout from '@/components/BlogLayout'
+import Button from '@/components/elements/Button'
 
 const Blog = ({ data, tags }) => {
   const { theme, setTheme } = useTheme()
@@ -47,14 +48,17 @@ const Blog = ({ data, tags }) => {
             <div className="text-xl font-bold">Теги</div>
           </Link>
         </div>
-        <div className="flex">
-          {allTags?.map((tag) => {
-            return (
-              <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
-                <Tag tag={tag.tag} />
-              </Link>
-            )
-          })}
+        <div className="mb-16">
+          <div className="mb-4 flex flex-wrap">
+            {allTags?.map((tag) => {
+              return (
+                <Link href={`blog/tags/${tag.slug}`} key={tag.tag}>
+                  <Tag tag={tag.tag} />
+                </Link>
+              )
+            })}
+          </div>
+          <Button label="Все теги" link="/blog/tags" />
         </div>
       </BlogLayout>
     </>

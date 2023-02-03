@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import { request, blogPageQuery, tagsQuery } from '../../../../lib/datocms'
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'
 
 import HeadSection from '@/components/HeadSection'
@@ -8,8 +8,6 @@ import BlogLayout from '@/components/BlogLayout'
 import BlogPostPreview from '@/components/BlogPostPreview'
 
 const TagPage = ({ data }) => {
-  const { theme, setTheme } = useTheme()
-  const [currentTheme, setCurrentTheme] = useState('light')
   const [posts, setPosts] = useState()
   const [tag, setTag] = useState()
   const { asPath } = useRouter()
@@ -29,7 +27,12 @@ const TagPage = ({ data }) => {
     <>
       <HeadSection title="Блог" />
       <BlogLayout name="Антон Досыбиев">
-        <div className="mb-8 text-xl font-bold">Теги → #{tag}</div>
+        <div className="mb-8 flex text-xl font-bold hover:text-[#dc2638]">
+          <Link href="/blog/tags">
+            <div>Теги →{` `}</div>
+          </Link>
+          <div>#{tag}</div>
+        </div>
         <div className="mb-16">
           {posts?.map((post) => {
             return (
