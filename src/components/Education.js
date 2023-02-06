@@ -32,11 +32,16 @@ const Education = ({ heading, content }) => {
           target="_blank"
           rel="noreferrer"
         >
-          <img
-            src="https://www.codewars.com/users/Dosybi/badges/micro?theme=dark"
-            alt="Codewars"
-            title="Codewars"
-          />
+          <picture
+            srcSet="https://www.codewars.com/users/Dosybi/badges/micro?theme=dark"
+            type="image/svg"
+          >
+            <img
+              src="https://www.codewars.com/users/Dosybi/badges/micro?theme=dark"
+              alt="Codewars"
+              title="Codewars"
+            />
+          </picture>
         </a>
       </div>
     </div>
