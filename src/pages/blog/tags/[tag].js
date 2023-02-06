@@ -13,15 +13,14 @@ const TagPage = ({ data }) => {
   const { asPath } = useRouter()
 
   useEffect(() => {
-    setPosts(
-      data.allPosts.filter((post) =>
-        post.tags
-          .map((tag) => tag.slug)
-          .includes(asPath.split('/')[asPath.split('/').length - 1])
-      )
+    const filteredPosts = data.allPosts.filter((post) =>
+      post.tags
+        .map((tag) => tag.slug)
+        .includes(asPath.split('/')[asPath.split('/').length - 1])
     )
+    setPosts(filteredPosts)
     setTag(asPath.split('/')[asPath.split('/').length - 1])
-  }, [])
+  }, [asPath, data])
 
   return (
     <>

@@ -1,4 +1,4 @@
-const About = ({ heading, text, subheading, extra }) => {
+const About = ({ heading, text }) => {
   return (
     <div className="mb-14 lg:mr-24 lg:w-1/2" id="about">
       <h2 className="mb-4 text-2xl font-bold uppercase">{heading}</h2>

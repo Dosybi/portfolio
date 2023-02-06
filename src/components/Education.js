@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-
-import Button from './elements/Button'
+import Image from 'next/image'
 
 const Education = ({ heading, content }) => {
   return (
@@ -27,6 +26,19 @@ const Education = ({ heading, content }) => {
           </div>
         )
       })}
+      <div className="mt-10">
+        <a
+          href="https://www.codewars.com/users/Dosybi"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="https://www.codewars.com/users/Dosybi/badges/micro?theme=dark"
+            alt="Codewars"
+            title="Codewars"
+          />
+        </a>
+      </div>
     </div>
   )
 }

@@ -26,92 +26,74 @@ const BlogPostPage = ({ data }) => {
         post.slug.includes(asPath.split('/')[asPath.split('/').length - 1])
       )[0]
     )
-  }, [asPath])
+  }, [asPath, data.allPosts])
 
   useEffect(() => {
+    if (!post) return
+
     const postIndex = data.allPosts.indexOf(post)
     setNextPost(data.allPosts[postIndex - 1])
     setPrevPost(data.allPosts[postIndex + 1])
-  }, [post])
+  }, [post, data.allPosts])
 
-  const showPrevArticleHeading = () => {
-    setIsHoveredPrev(true)
-  }
+  const showPrevArticleHeading = () => setIsHoveredPrev(true)
+  const showNextArticleHeading = () => setIsHoveredNext(true)
+  const hidePrevArticleHeading = () => setIsHoveredPrev(false)
+  const hideNextArticleHeading = () => setIsHoveredNext(false)
 
-  const hidePrevArticleHeading = () => {
-    setIsHoveredPrev(false)
-  }
-
-  const showNextArticleHeading = () => {
-    setIsHoveredNext(true)
-  }
-
-  const hideNextArticleHeading = () => {
-    setIsHoveredNext(false)
+  if (!post) {
+    return (
+      <div className="flex justify-center">
+        <ThreeDots height={80} width={80} color="black" />
+      </div>
+    )
   }
 
   return (
     <>
       <HeadSection title={post?.heading} description={post?.lead} />
       <BlogLayout name="Антон Досыбиев">
-        {post ? (
-          <>
-            <BlogPost
-              heading={post?.heading}
-              text={post?.text}
-              tags={post?.tags}
-              date={post?._publishedAt}
-            />
-            <div className="my-10 flex justify-between">
-              {prevPost ? (
-                <div
-                  onMouseEnter={() => showPrevArticleHeading()}
-                  onMouseLeave={() => hidePrevArticleHeading()}
-                >
-                  <Button
-                    label={
-                      isHoveredPrev && size.width >= 640
-                        ? prevPost.heading
-                        : 'Предыдущий'
-                    }
-                    link={prevPost.slug}
-                    isArrowLeft
-                  />
-                </div>
-              ) : (
-                <div></div>
-              )}
-              {nextPost && (
-                <div
-                  onMouseEnter={() => showNextArticleHeading()}
-                  onMouseLeave={() => hideNextArticleHeading()}
-                >
-                  <Button
-                    label={
-                      isHoveredNext && size.width >= 640
-                        ? nextPost.heading
-                        : 'Следующий'
-                    }
-                    link={nextPost.slug}
-                  />
-                </div>
-              )}
+        <BlogPost
+          heading={post?.heading}
+          text={post?.text}
+          tags={post?.tags}
+          date={post?._publishedAt}
+        />
+        <div className="my-10 flex justify-between">
+          {prevPost ? (
+            <div
+              onMouseEnter={() => showPrevArticleHeading()}
+              onMouseLeave={() => hidePrevArticleHeading()}
+            >
+              <Button
+                label={
+                  isHoveredPrev && size.width >= 640
+                    ? prevPost.heading
+                    : 'Предыдущий'
+                }
+                link={prevPost.slug}
+                isArrowLeft
+              />
             </div>
-          </>
-        ) : (
-          <div className="flex justify-center">
-            <ThreeDots
-              height="80"
-              width="80"
-              radius="9"
-              color="black"
-              ariaLabel="three-dots-loading"
-              wrapperStyle={{}}
-              wrapperClassName=""
-              visible={true}
-            />
-          </div>
-        )}
+          ) : (
+            <div></div>
+          )}
+          {nextPost && (
+            <div
+              onMouseEnter={() => showNextArticleHeading()}
+              onMouseLeave={() => hideNextArticleHeading()}
+            >
+              <Button
+                label={
+                  isHoveredNext && size.width >= 640
+                    ? nextPost.heading
+                    : 'Следующий'
+                }
+                link={nextPost.slug}
+              />
+            </div>
+          )}
+        </div>
       </BlogLayout>
     </>
   )

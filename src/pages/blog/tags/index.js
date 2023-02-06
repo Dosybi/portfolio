@@ -7,13 +7,19 @@ import HeadSection from '@/components/HeadSection'
 import Tag from '@/components/elements/Tag'
 
 const TagsPage = ({ data, tags }) => {
-  const [allTags, setAllTags] = useState()
-  const [posts, setPosts] = useState()
+  const [allTags, setAllTags] = useState(tags.allTags)
+  const [posts, setPosts] = useState(data.allPosts)
 
   useEffect(() => {
     setAllTags(tags.allTags)
     setPosts(data.allPosts)
-  }, [])
+  }, [data, tags])
+
+  const getTagPostCount = (tag) => {
+    return posts?.filter((post) =>
+      post.tags.map((t) => t.tag).includes(tag.tag)
+    ).length
+  }
 
   const getLastDigit = (number) => {
     return Number(
@@ -27,9 +33,7 @@ const TagsPage = ({ data, tags }) => {
       <BlogLayout name="Антон Досыбиев">
         <div className="mb-8 text-xl font-bold">Теги</div>
         {allTags?.map((tag) => {
-          const postsNumber = posts?.filter((post) =>
-            post.tags.map((t) => t.tag).includes(tag.tag)
-          ).length
+          const postsNumber = getTagPostCount(tag)
           return (
             <div className="mb-4 flex w-fit" key={tag.tag}>
               <Link href={`tags/${tag.slug}`}>
