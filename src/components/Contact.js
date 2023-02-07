@@ -2,6 +2,7 @@ import { FiMail } from 'react-icons/fi'
 import { AiOutlineGithub } from 'react-icons/ai'
 import { BsInstagram } from 'react-icons/bs'
 import { TbBrandTelegram } from 'react-icons/tb'
+import { SiHabr } from 'react-icons/si'
 
 import Button from './elements/Button'
 
@@ -19,6 +20,9 @@ const ContactItem = ({ contact }) => {
       break
     case 'Telegram':
       icon = <TbBrandTelegram />
+      break
+    case 'Habr':
+      icon = <SiHabr />
       break
   }
 
