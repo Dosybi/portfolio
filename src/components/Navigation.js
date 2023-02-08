@@ -2,6 +2,7 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import { useState, useRef } from 'react'
 import useOnClickOutside from './hooks/useOnClickOutside'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { AiOutlineMenu } from 'react-icons/ai'
 import { GrClose } from 'react-icons/gr'
@@ -10,6 +11,7 @@ const Navigation = ({ navigation }) => {
   const ref = useRef()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   useOnClickOutside(ref, () => setIsMenuOpen(false))
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <>
@@ -33,30 +35,51 @@ const Navigation = ({ navigation }) => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         ref={ref}
       >
-        {isMenuOpen && (
-          <div>
-            <ul className="bottom-8 mb-10 rounded-xl bg-white px-3 py-6">
-              {navigation.map((navItem) => {
-                return (
-                  <Link href={navItem.link || navItem.slug} key={navItem.label}>
-                    <li>
-                      <div className="link-decorated mb-6 w-fit font-bold uppercase">
-                        {navItem.label !== 'Blog' && navItem.label}
-                      </div>
-                    </li>
-                  </Link>
-                )
-              })}
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ul className="bottom-8 mb-10 rounded-xl bg-white px-3 py-6">
+                {navigation.map((navItem) => {
+                  return (
+                    <Link
+                      href={navItem.link || navItem.slug}
+                      key={navItem.label}
+                    >
+                      <li>
+                        <div className="link-decorated mb-6 w-fit font-bold uppercase">
+                          {navItem.label !== 'Blog' && navItem.label}
+                        </div>
+                      </li>
+                    </Link>
+                  )
+                })}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div
           className={classNames(
             'fixed bottom-4 right-4 h-12 w-12 rounded-full bg-white p-3 text-2xl',
             isMenuOpen && 'rounded-t-none'
           )}
         >
-          {isMenuOpen ? <GrClose /> : <AiOutlineMenu />}
+          {isMenuOpen ? (
+            <motion.div
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              animate={{
+                rotate: isHovered ? 90 : 0,
+              }}
+            >
+              <GrClose />
+            </motion.div>
+          ) : (
+            <AiOutlineMenu />
+          )}
         </div>
       </nav>
     </>
