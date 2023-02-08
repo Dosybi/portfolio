@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const Education = ({ heading, content }) => {
   return (
@@ -13,15 +13,27 @@ const Education = ({ heading, content }) => {
             </h3>
             <p className="mb-2">{item.school}</p>
             <div className="mb-4 h-0.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-              <div
+              <motion.div
                 className={classNames(
-                  'h-0.5 rounded-full text-end text-xs',
+                  'h-1 rounded-full text-end text-xs',
                   item.progress === '100%' ? 'bg-green-200' : 'bg-red-200'
                 )}
-                style={{ width: `${item.progress}` }}
+                initial={{ width: 0 }}
+                whileInView={{
+                  width: item.progress,
+                  backgroundColor: [
+                    'rgb(229 231 235)',
+                    item.progress === '100%'
+                      ? 'rgb(187 247 208)'
+                      : 'rgb(254 202 202)',
+                  ],
+                  transition: {
+                    duration: 4,
+                  },
+                }}
               >
                 {item.progress}
-              </div>
+              </motion.div>
             </div>
           </div>
         )
