@@ -1,4 +1,13 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
+
+const googleAnalytics = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-E53QDEDDDQ');
+`
 
 export default function Document() {
   return (
@@ -59,6 +68,15 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-E53QDEDDDQ"
+      />
+      <Script
+        id="G-E53QDEDDDQ"
+        dangerouslySetInnerHTML={{ __html: googleAnalytics }}
+      />
+
       <body>
         <Main />
         <NextScript />
