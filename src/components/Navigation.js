@@ -20,9 +20,12 @@ const Navigation = ({ navigation }) => {
           {navigation.map((navItem) => {
             return (
               <Link href={navItem.link || navItem.slug} key={navItem.label}>
-                <li>
+                <li className="flex items-center">
                   <div className="link-decorated mb-4 w-fit text-xs font-bold uppercase">
                     {navItem.label !== 'Blog' && navItem.label}
+                  </div>
+                  <div className="mb-4 ml-1 lowercase">
+                    {navItem.label === 'Блог' && 'β'}
                   </div>
                 </li>
               </Link>
