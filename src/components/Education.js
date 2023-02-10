@@ -38,7 +38,7 @@ const Education = ({ heading, content }) => {
           </div>
         )
       })}
-      <div className="mt-10">
+      <div className="mt-10 w-fit">
         <a
           href="https://www.codewars.com/users/Dosybi"
           target="_blank"
