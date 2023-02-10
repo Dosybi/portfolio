@@ -1,13 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
-
-const googleAnalytics = `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-E53QDEDDDQ');
-`
 
 export default function Document() {
   return (
@@ -70,14 +61,6 @@ export default function Document() {
       </Head>
 
       <body>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-E53QDEDDDQ"
-        />
-        <Script
-          id="G-E53QDEDDDQ"
-          dangerouslySetInnerHTML={{ __html: googleAnalytics }}
-        />
         <Main />
         <NextScript />
       </body>
