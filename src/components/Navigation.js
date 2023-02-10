@@ -41,11 +41,12 @@ const Navigation = ({ navigation }) => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ width: 0 }}
+              animate={{ width: 'auto', bottom: '2rem' }}
+              exit={{ height: 0 }}
+              transition={{ ease: 'easeOut' }}
             >
-              <ul className="bottom-8 mb-10 rounded-xl bg-white px-3 py-6">
+              <ul className="mb-10 rounded-xl bg-white px-3 py-6">
                 {navigation.map((navItem) => {
                   return (
                     <Link
