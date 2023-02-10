@@ -68,16 +68,16 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-E53QDEDDDQ"
-      />
-      <Script
-        id="G-E53QDEDDDQ"
-        dangerouslySetInnerHTML={{ __html: googleAnalytics }}
-      />
 
       <body>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-E53QDEDDDQ"
+        />
+        <Script
+          id="G-E53QDEDDDQ"
+          dangerouslySetInnerHTML={{ __html: googleAnalytics }}
+        />
         <Main />
         <NextScript />
       </body>
