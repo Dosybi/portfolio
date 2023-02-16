@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import { StructuredText, renderNodeRule } from 'react-datocms/structured-text'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import vsDark from 'prism-react-renderer/themes/vsDark'
 
 import {
   isHeading,
   isLink,
   isList,
   isParagraph,
+  isCode,
 } from 'datocms-structured-text-utils'
 
 import { BsTags } from 'react-icons/bs'
@@ -28,7 +31,7 @@ const BlogPost = ({ heading, text, tags, date }) => {
         <BsTags className="mr-1.5" />
         {tags?.map((tag) => {
           return (
-            <Link href={`tags/${tag.slug}`} key={tag.tag}>
+            <Link href={`tags/${tag.slug}`} key={tag.tag} className="mr-1.5">
               <div className="text-sm transition-colors duration-300 hover:text-[#dc2638]">
                 #{tag.tag}
               </div>
@@ -74,6 +77,42 @@ const BlogPost = ({ heading, text, tags, date }) => {
               >
                 {children}
               </Link>
+            )
+          }),
+          renderNodeRule(isCode, ({ node, key }) => {
+            return (
+              <div className="mb-8" key={key}>
+                <Highlight
+                  {...defaultProps}
+                  code={node.code}
+                  language="javascript"
+                  theme={vsDark}
+                >
+                  {({
+                    className,
+                    style,
+                    tokens,
+                    getLineProps,
+                    getTokenProps,
+                  }) => (
+                    <pre
+                      className={'px-4 pt-4 pb-6 text-xs md:text-sm'}
+                      style={style}
+                    >
+                      {tokens.map((line, i) => (
+                        <div {...getLineProps({ line, key: i })} key={i}>
+                          {line.map((token, key) => (
+                            <span
+                              {...getTokenProps({ token, key })}
+                              key={key}
+                            />
+                          ))}
+                        </div>
+                      ))}
+                    </pre>
+                  )}
+                </Highlight>
+              </div>
             )
           }),
         ]}
