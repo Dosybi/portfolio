@@ -96,7 +96,9 @@ const BlogPost = ({ heading, text, tags, date }) => {
                     getTokenProps,
                   }) => (
                     <pre
-                      className={'px-4 pt-4 pb-6 text-xs md:text-sm'}
+                      className={
+                        'overflow-auto px-4 pt-4 pb-6 text-xs md:text-sm'
+                      }
                       style={style}
                     >
                       {tokens.map((line, i) => (
