@@ -48,7 +48,19 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
         <meta name="msapplication-TileColor" content="#ffffff" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta
+          name="theme-color"
+          content="#dc2638"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#dc2638"
+          media="(prefers-color-scheme: dark)"
+        />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#dc2638" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />

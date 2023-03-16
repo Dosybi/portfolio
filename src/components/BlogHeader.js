@@ -58,7 +58,7 @@ const BlogHeader = () => {
         </div>
       </div>
       <Link href={'/'}>
-        <div className="mb-16 text-xs font-bold uppercase tracking-widest transition-colors duration-300 hover:text-[#dc2638]">
+        <div className="mb-16 w-fit text-xs font-bold uppercase tracking-widest transition-colors duration-300 hover:text-[#dc2638]">
           ← Портфолио
         </div>
       </Link>
