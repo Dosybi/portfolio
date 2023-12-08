@@ -2,7 +2,7 @@ import Button from './elements/Button'
 
 const PortfolioCard = ({ stack, title, year, text, button }) => {
   return (
-    <div className="mb-8 box-border overflow-hidden pt-6">
+    <div className="portfolio-card mb-8 box-border overflow-hidden pt-6">
       <div className="md:flex md:flex-row-reverse md:justify-between">
         <div className="md:mr-8">
           <h2 className="mb-2 text-3xl font-bold uppercase md:mr-8 md:text-4xl lg:text-6xl">
