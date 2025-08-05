@@ -12,7 +12,7 @@ const PortfolioCard = ({ stack, title, year, text, button }) => {
           <div className="mb-4 text-xs uppercase tracking-widest text-red-600 dark:text-red-400">
             {stack}
           </div>
-          <p className="mb-4">{text}</p>
+          <p className="mb-4 whitespace-pre-line">{text}</p>
           <Button {...button} />
         </div>
       </div>
