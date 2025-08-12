@@ -137,7 +137,6 @@ function protectSegments(
 }
 
 function simpleSymbols(s: string, o: Required<TypografOptions>) {
-  // ... → …
   if (o.enableEllipsis) s = s.replace(/\.{3,}/g, '…')
 
   // (c)/(C)/(r)/(tm) → ©/®/™
@@ -171,7 +170,7 @@ function dashes(s: string) {
 function glueShortPreps(s: string, o: Required<TypografOptions>) {
   const base1 = ['в', 'к', 'с', 'у', 'о'] // 1 буква
   const base2 = ['по', 'на', 'из', 'за', 'от', 'до', 'во', 'со', 'об', 'обо'] // 2 буквы
-  const base3 = ['для', 'при', 'без', 'над', 'под', 'про'] // 3 буквы (можешь дополнять)
+  const base3 = ['для', 'при', 'без', 'над', 'под', 'про'] // 3 буквы
   const conj = o.includeConjunctions ? ['и', 'а'] : []
   const extra = o.extraShortWords
     .map((w) => w.toLowerCase().trim())
@@ -276,7 +275,7 @@ function numbersAndUnits(s: string, o: Required<TypografOptions>) {
     'GBP',
   ].join('|')
 
-  // NBSP между числом (в т.ч. с уже разбитыми тысячами) и единицей
+  // NBSP между числом в т.ч. с уже разбитыми тысячами и единицей
   s = s.replace(
     new RegExp(
       `(\\d(?:[\\s${NNBSP}]?\\d{3})*(?:[,.]\\d+)?)[ \\t]+(?=(?:${units}|°[CF])\\b)`,
@@ -306,8 +305,7 @@ function groupThousands(s: string, group4: boolean) {
 }
 
 function smartQuotes(s: string) {
-  // Простейший стек для двойных кавычек:
-  // 0-й уровень: «…», 1-й: „…“
+  // Простейший стек для двойных кавычек: 0-й уровень: «…», 1-й: „…“
   const opens = ['«', '„']
   const closes = ['»', '“']
   let depth = 0
