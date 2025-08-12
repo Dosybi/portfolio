@@ -1,7 +1,6 @@
 import { request, blogPageQuery } from '../../../lib/datocms'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import useHover from '@/components/hooks/useHover'
 import useWindowSize from '@/components/hooks/useWindowSize'
 
 import { ThreeDots } from 'react-loader-spinner'
