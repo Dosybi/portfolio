@@ -156,39 +156,46 @@ function simpleSymbols(s: string, o: Required<TypografOptions>) {
 }
 
 function dashes(s: string) {
-  // Диапазоны чисел: 5–7, 1995–2001 (без пробелов)
-  s = s.replace(/(?<=\d)\s*-\s*(?=\d)/g, NDASH)
+  // Диапазоны чисел: 5–7, 1995–2001
+  s = s.replace(/(?<=\d)[ \t]*-[ \t]*(?=\d)/g, NDASH)
 
-  // Реплики: начало строки/абзаца "- " → "— "
+  // Реплики/буллиты: начало строки "- " → "— "
   s = s.replace(/(^|\n)[ \t]*-[ \t]+(?=\S)/g, (_, p1) => `${p1}${MDASH} `)
 
-  // Окружённый пробелами дефис → тире: " — "
-  s = s.replace(/(\s)-(\s)/g, `$1${MDASH}$2`)
+  // Гибриды " - " внутри строки → " — " (не захватываем переносы)
+  s = s.replace(/([ \t\u00A0\u202F])-(?=[ \t\u00A0\u202F])/g, `$1${MDASH}`)
 
   return s
 }
 
 function glueShortPreps(s: string, o: Required<TypografOptions>) {
-  const base1 = ['в', 'к', 'с', 'у', 'о']
-  const base2 = ['по', 'на', 'из', 'за', 'от', 'до', 'во', 'со']
+  const base1 = ['в', 'к', 'с', 'у', 'о'] // 1 буква
+  const base2 = ['по', 'на', 'из', 'за', 'от', 'до', 'во', 'со', 'об', 'обо'] // 2 буквы
+  const base3 = ['для', 'при', 'без', 'над', 'под', 'про'] // 3 буквы (можешь дополнять)
   const conj = o.includeConjunctions ? ['и', 'а'] : []
   const extra = o.extraShortWords
     .map((w) => w.toLowerCase().trim())
     .filter(Boolean)
-  const words = Array.from(new Set([...base1, ...base2, ...conj, ...extra]))
 
+  const words = Array.from(
+    new Set([...base1, ...base2, ...base3, ...conj, ...extra])
+  )
   if (!words.length) return s
 
   const alt = words
     .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
     .join('|')
 
-  // (^|начало/пробел/открывающая пунктуация)(слово)\s+(?=буква/цифра)
+  // Горизонтальные пробелы (space, tab, NBSP, NNBSP)
+  const HSP = `[\\t \\u00A0\\u202F]+`
+
+  // (^|пробел/откр.пунктуация)(слово){HSP}(?=\S)
   const re = new RegExp(
-    `(^|[\\s\\u00A0([{"'«„—–-])((?:${alt}))\\b\\s+(?=[\\p{L}\\p{N}])`,
+    `(^|[\\t \\u00A0\\u202F([{"'«„—–-])((?:${alt}))${HSP}(?=\\S)`,
     'giu'
   )
-  return s.replace(re, (_m, left, w) => `${left}${w}${NBSP}`)
+
+  return s.replace(re, (_m, left, w) => `${left}${w}\u00A0`)
 }
 
 function glueParticles(s: string) {
@@ -320,19 +327,25 @@ function smartQuotes(s: string) {
 }
 
 function tidySpaces(s: string) {
-  // Удаляем лишние обычные пробелы (NBSP/NNBSP сохраняем)
+  // Сжимаем только обычные пробелы/табуляции
   s = s.replace(/[ \t]{2,}/g, ' ')
 
-  // Нет пробела перед , . ! ? : ; ) » (кроме случаев, когда это уже NBSP/NNBSP не нужно)
-  s = s.replace(/([^\s\u00A0\u202F])\s+([,.;:!?»])/g, `$1$2`)
+  // Нет пробела перед знаками (не трогаем переносы)
+  s = s.replace(/([^\s\u00A0\u202F])[ \t]+([,.;:!?»])/g, `$1$2`)
 
-  // Один пробел после , : ; ? ! если дальше буква/цифра (не трогаем числа с запятой)
-  s = s.replace(/([,;:!?])(?!\s|$)(?=[^\d])/g, '$1 ')
+  // Один пробел после , : ; ? ! если дальше текст (без чисел с запятой)
+  s = s.replace(/([,;:!?])(?![ \t\n]|$)(?=[^\d])/g, '$1 ')
 
-  // Сжимаем пробелы вокруг тире до обычного пробела: " — "
-  s = s.replace(/\s*—\s*/g, ` ${MDASH} `).replace(/^\s*—\s*/gm, `${MDASH} `)
+  // Тире внутри строки: нормализуем пробелы вокруг —, не трогая переносы
+  s = s.replace(
+    /([^\n])[ \t\u00A0\u202F]*—[ \t\u00A0\u202F]*/g,
+    (_m, left) => `${left} ${MDASH} `
+  )
 
-  // Убираем пробелы в начале/конце строк
+  // Тире в начале строки/абзаца: оставляем как буллит
+  s = s.replace(/(^|\n)[ \t\u00A0\u202F]*—[ \t\u00A0\u202F]*/g, `$1${MDASH} `)
+
+  // Убираем хвостовые пробелы по строкам
   s = s.replace(/[ \t]+$/gm, '').trim()
 
   return s
